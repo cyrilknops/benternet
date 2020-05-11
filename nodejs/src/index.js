@@ -2,7 +2,7 @@
 require('dotenv').config();
 const zmq = require('zeromq');
 const mysql = require('mysql');
-var con = mysql.createConnection({
+var con = mysql.createPool({
     host: "185.28.20.4",
     user: "u398363217_benternet",
     password: "Bkd!hFd9",
@@ -28,7 +28,7 @@ function pushMessage(msg = false) {
         console.log(e);
     }
     if(!msg){
-        msg = "DNS?>cyrilknops.com";
+        msg = TOPIC+"?>cyrilknops.com";
     }
     try {
         //console.log("sending a message");
@@ -41,20 +41,20 @@ function pushMessage(msg = false) {
 }
 
 function getMessage() {
-    con.on('error', function(err) {
-        //console.log('db error', err);
-        if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
-            handleDisconnect();                         // lost due to either server restart, or a
-        } else {                                      // connnection idle timeout (the wait_timeout
-            throw err;                                  // server variable configures this)
-        }
-    });
+    // con.on('error', function(err) {
+    //     //console.log('db error', err);
+    //     if(err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR') { // Connection to the MySQL server is usually
+    //         handleDisconnect();                         // lost due to either server restart, or a
+    //     } else {                                      // connnection idle timeout (the wait_timeout
+    //         throw err;                                  // server variable configures this)
+    //     }
+    // });
     subsock.on("message", function(topic, message) {
         numMessages++;
         console.log("Number of messages received:", String(numMessages));
         //console.log(String(topic));
         var msg = "";
-        if(String(topic).includes('DNS?>')) {
+        if(String(topic).includes(TOPIC+'?>')) {
             msg = String(topic).split(">")[1];
             //var IP = urlToIp(String(msg));
             var IP = false;
@@ -69,13 +69,37 @@ function getMessage() {
                     //console.log(IP);
                     if (!IP) {
                         //console.log("DNS!>I don't know the ip of", String(msg));
-                        pushMessage("DNS!>" + String(msg)+":unknown");
+                        pushMessage(TOPIC+"!>" + String(msg)+":unknown");
 
                     } else {
                         //console.log("DNS!>The IP of:", String(msg), "is:", String(IP));
-                        pushMessage("DNS!>" + String(msg) +":"+ String(IP));
+                        pushMessage(TOPIC+"!>" + String(msg) +":"+ String(IP));
                     }
                 });
+        }else if(String(topic).includes(TOPIC+'ADD?>')) {
+            url = String(topic).split(">")[1];
+            ip = String(topic).split(">")[2];
+            //var IP = urlToIp(String(msg));
+            var IP = false;
+            con.query("INSERT INTO DNS (url, ip) VALUES("+mysql.escape(String(url))+", "+mysql.escape(String(ip))+") ON DUPLICATE KEY UPDATE " +
+                "url="+mysql.escape(String(url))+", ip="+mysql.escape(String(ip)),function (err, result, fields) {
+                if (err) throw err;
+                //console.log(result);
+                try {
+                    IP = result[0].ip;
+                }catch (e) {
+                    IP=false
+                }
+                //console.log(IP);
+                if (!IP) {
+                    //console.log("DNS!>I don't know the ip of", String(msg));
+                    pushMessage(TOPIC+"ADD!>" + String(url)+":Updated");
+
+                } else {
+                    //console.log("DNS!>The IP of:", String(msg), "is:", String(IP));
+                    pushMessage(TOPIC+"ADD!>" + String(url) +":Added");
+                }
+            });
         }
     });
 }
@@ -95,6 +119,7 @@ subsock.connect(BROKER_URL_SUB);
 subsock.subscribe(TOPIC);
 //pushMessage("DNS?>google.com");
 //pushMessage("DNS?>iwg-it.com");
+console.log("Server started");
 getMessage();
 
 function handleDisconnect() {

@@ -49,4 +49,6 @@ subsock.subscribe(TOPIC);
 pushMessage("DNS?>google.com");
 pushMessage("DNS?>iwg-it.com");
 pushMessage("DNS?>facebook.com");
+pushMessage("DNSADD?>facebook.com>1.666.666.666");
+pushMessage("DNS?>facebook.com");
 getMessage();
