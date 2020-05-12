@@ -5,12 +5,12 @@ A DNS service for the benternet network made for nodejs
 ```sh
 npm install
 ```
-## How to run
-### For server
+## How to use
+### Server
 ```sh
 npm start
 ```
-### For client
+### Client
 ```sh
 npm run client
 ```
