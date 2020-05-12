@@ -81,8 +81,7 @@ function getMessage() {
             ip = String(topic).split(">")[2];
             //var IP = urlToIp(String(msg));
             var IP = false;
-            con.query("INSERT INTO DNS (url, ip) VALUES("+mysql.escape(String(url))+", "+mysql.escape(String(ip))+") ON DUPLICATE KEY UPDATE " +
-                "url="+mysql.escape(String(url))+", ip="+mysql.escape(String(ip)),function (err, result, fields) {
+            con.query("REPLACE INTO DNS (url, ip) VALUES("+mysql.escape(String(url))+", "+mysql.escape(String(ip))+")",function (err, result, fields) {
                 if (err) throw err;
                 //console.log(result);
                 try {
@@ -91,10 +90,9 @@ function getMessage() {
                     IP=false
                 }
                 //console.log(IP);
-                if (!IP) {
+                if (result.rowsAffected = 1) {
                     //console.log("DNS!>I don't know the ip of", String(msg));
                     pushMessage(TOPIC+"ADD!>" + String(url)+":Updated");
-
                 } else {
                     //console.log("DNS!>The IP of:", String(msg), "is:", String(IP));
                     pushMessage(TOPIC+"ADD!>" + String(url) +":Added");

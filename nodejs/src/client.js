@@ -1,6 +1,11 @@
 /** @format */
 require('dotenv').config();
 const zmq = require('zeromq');
+const readline = require("readline");
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 
 const BROKER_URL_PUSH = "tcp://benternet.pxl-ea-ict.be:24041";
@@ -25,8 +30,9 @@ function pushMessage(msg = false) {
     } catch (e) {
         console.log(e);
     }
-    console.log("request "+msg);
-    pushsock.disconnect(BROKER_URL_PUSH)
+    //console.log("request "+msg);
+    pushsock.disconnect(BROKER_URL_PUSH);
+    getCommand();
 }
 
 function getMessage() {
@@ -40,15 +46,36 @@ function getMessage() {
             console.log(String(msg));
             //pushMessage("I don't know the ip of " + String(msg));
 
+        }else{
+            if (String(topic).includes('DNSADD!>')) {
+                msg = String(topic).split(">")[1];
+                //var IP = urlToIp(String(msg));
+                console.log(String(msg));
+                //pushMessage("I don't know the ip of " + String(msg));
+
+            }
         }
     });
 }
+function getCommand() {
+    rl.question("", function(url) {
+        if(url == 'help'){
+            console.log("To find a ip just type the url, example facebook.com");
+            console.log("To add a ip just type the url:ip, example facebook.com:6.6.6.6");
+            getCommand();
+        }else if(String(url).includes(':')){
+            msg = String(url).split(":");
+            pushMessage(TOPIC+"ADD?>"+msg[0]+">"+msg[1]);
+        }else{
+            pushMessage(TOPIC+"?>"+url);
+        }
+
+    });
+}
+
 const subsock = new zmq.socket("sub");
 subsock.connect(BROKER_URL_SUB);
 subsock.subscribe(TOPIC);
-pushMessage("DNS?>google.com");
-pushMessage("DNS?>iwg-it.com");
-pushMessage("DNS?>facebook.com");
-pushMessage("DNSADD?>facebook.com>1.666.666.666");
-pushMessage("DNS?>facebook.com");
+console.log("Type help for more information");
+getCommand();
 getMessage();
