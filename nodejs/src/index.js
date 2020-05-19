@@ -3,6 +3,7 @@ require('dotenv').config();
 const zmq = require('zeromq');
 const mysql = require('mysql');
 const express = require('express');
+var cors = require('cors')
 var con = mysql.createPool({    //needs to be createPool, createConnection wil try to stay connected and fail
     host: "185.28.20.4",
     user: "u398363217_benternet",
@@ -11,6 +12,8 @@ var con = mysql.createPool({    //needs to be createPool, createConnection wil t
 });
 const app = new express();
 const port = 3000;
+app.set('trust proxy', true);
+app.use(cors());
 
 const BROKER_URL_PUSH = "tcp://benternet.pxl-ea-ict.be:24041"; //the url that the server pushes to
 const BROKER_URL_SUB = "tcp://benternet.pxl-ea-ict.be:24042";  //the url that the server subs to
@@ -96,15 +99,18 @@ app.get('/', function(request, response){
 });
 
 app.get('/api', function(request, response){
+    var ip = "";
     if ('url' in request.query){
-        con.query("REPLACE INTO DNS (url, ip) VALUES("+mysql.escape(String(request.query.url))+", "+mysql.escape(String(request.query.ip))+")",function (err, result, fields) {
-            if (err) throw err;
-            if (result.rowsAffected = 1) {
-                response.send("record saved");
-            } else {
-                response.send("something went wrong");
-            }
-        });
+        if('ip' in request.query){
+            ip = request.query.ip;
+        }else{
+            ip = String(request.ip).split(":");
+            ip = ip[3];
+            console.log(ip);
+            //response.send(request);
+        }
+        pushMessage(TOPIC+"ADD?>"+request.query.url+">"+ip);
+        response.send("record added or updated");
     } else {
         con.query("SELECT * FROM DNS", function (err, result, fields) {
             if (err) throw err;
