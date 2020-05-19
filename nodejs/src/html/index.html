@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>DNS-Server</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <style type="text/css">
+        .red {
+            color: red;
+        }
+        .green {
+            color: green;
+        }
+        th {
+            vertical-align: inherit !important;
+            text-align: right;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+<div class="container" ng-controller="bikeController as vm">
+    <h1>DNS records</h1>
+    <div class="row">
+        <div class="col-md-12" style="text-align: right">
+            <table class= "table table-striped">
+
+                <tr>
+                    <td><h4>URL</h4></td>
+                    <td><h4>IP</h4></td>
+                </tr>
+                <tr ng-repeat="dns in vm.dnss">
+                    <td>{{dns.url}}</td>
+                    <td>{{dns.ip}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script>
+    angular.module('myApp', [])
+        .controller('bikeController', filmController);
+    function filmController($http, $timeout) {
+        // 0. initialisaties, variabelen
+        var vm = this;
+        vm.url = "";
+        vm.ip = "";
+        vm.dnss = [];
+        vm.show = false;
+        var error = false;
+        vm.getData = function(){
+            $http({
+                method: 'get',
+                url   : "http://localhost:3000/api"
+            }).then(function (dns) {
+                vm.dnss = dns.data;
+            }).catch(function (err) {
+                //alert('Error: er is een fout opgetreden ' + err);
+                error = true;
+            });
+
+            if(error){
+                alert('Error: er is een fout opgetreden ');
+            }
+        }
+
+        vm.intervalFunction = function(){
+            $timeout(function() {
+                vm.getData();
+                vm.intervalFunction();
+            }, 1000)
+        };
+        vm.intervalFunction();
+    }
+</script>
+</body>
+</html>

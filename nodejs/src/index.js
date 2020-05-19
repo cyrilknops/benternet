@@ -2,33 +2,28 @@
 require('dotenv').config();
 const zmq = require('zeromq');
 const mysql = require('mysql');
-var con = mysql.createPool({
+const express = require('express');
+var con = mysql.createPool({    //needs to be createPool, createConnection wil try to stay connected and fail
     host: "185.28.20.4",
     user: "u398363217_benternet",
     password: "Bkd!hFd9",
     database: "u398363217_benternet"
 });
+const app = new express();
+const port = 3000;
 
-const BROKER_URL_PUSH = "tcp://benternet.pxl-ea-ict.be:24041";
-const BROKER_URL_SUB = "tcp://benternet.pxl-ea-ict.be:24042";
-const TOPIC = "DNS";
-var numMessages = 0;
-var dns = [
-    ['google.com', '172.217.17.142'],
-    ['cyrilknops.com', '84.193.168.7'],
-    ['youtube.com', '172.217.17.78']
-];
+const BROKER_URL_PUSH = "tcp://benternet.pxl-ea-ict.be:24041"; //the url that the server pushes to
+const BROKER_URL_SUB = "tcp://benternet.pxl-ea-ict.be:24042";  //the url that the server subs to
+const TOPIC = "DNS";    //the topic that the server listens to
+var numMessages = 0;    // how many messages the server receives (for debug)
 
-function pushMessage(msg = false) {
+function pushMessage(msg) { //push a message to the broker
     const pushsock = new zmq.socket("push");
     try {
         pushsock.connect(BROKER_URL_PUSH)
         //console.log("Publisher bound")
     } catch (e) {
         console.log(e);
-    }
-    if(!msg){
-        msg = TOPIC+"?>cyrilknops.com";
     }
     try {
         //console.log("sending a message");
@@ -40,46 +35,34 @@ function pushMessage(msg = false) {
     pushsock.disconnect(BROKER_URL_PUSH)
 }
 
-function getMessage() {
-    // con.on('error', function(err) {
-    //     //console.log('db error', err);
-    //     if(err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR') { // Connection to the MySQL server is usually
-    //         handleDisconnect();                         // lost due to either server restart, or a
-    //     } else {                                      // connnection idle timeout (the wait_timeout
-    //         throw err;                                  // server variable configures this)
-    //     }
-    // });
+function getMessage() { //get called every time there is a message
     subsock.on("message", function(topic, message) {
-        numMessages++;
-        console.log("Number of messages received:", String(numMessages));
-        //console.log(String(topic));
+        numMessages++; //for debug
+        console.log("Number of messages received:", String(numMessages)); //for debug
         var msg = "";
-        if(String(topic).includes(TOPIC+'?>')) {
+        if(String(topic).includes(TOPIC+'?>')) { //if the user asks for the ip of a url
             msg = String(topic).split(">")[1];
-            //var IP = urlToIp(String(msg));
             var IP = false;
                 con.query("SELECT * FROM DNS WHERE url LIKE " + mysql.escape(String(msg)), function (err, result, fields) {
                     if (err) throw err;
                     //console.log(result);
                     try {
                         IP = result[0].ip;
-                    }catch (e) {
-                        IP=false
+                    }catch (e) { //if there is no ip for a provided url
+                        IP = false;
                     }
-                    //console.log(IP);
-                    if (!IP) {
-                        //console.log("DNS!>I don't know the ip of", String(msg));
+                    if (!IP) { //checks it there is a ip
+                        //console.log("DNS!>I don't know the ip of", String(msg)); //for debug
                         pushMessage(TOPIC+"!>" + String(msg)+":unknown");
 
                     } else {
-                        //console.log("DNS!>The IP of:", String(msg), "is:", String(IP));
+                        //console.log("DNS!>The IP of:", String(msg), "is:", String(IP)); //for debug
                         pushMessage(TOPIC+"!>" + String(msg) +":"+ String(IP));
                     }
                 });
-        }else if(String(topic).includes(TOPIC+'ADD?>')) {
+        }else if(String(topic).includes(TOPIC+'ADD?>')) { //if the user want's to update or add a ip to a url
             url = String(topic).split(">")[1];
             ip = String(topic).split(">")[2];
-            //var IP = urlToIp(String(msg));
             var IP = false;
             con.query("REPLACE INTO DNS (url, ip) VALUES("+mysql.escape(String(url))+", "+mysql.escape(String(ip))+")",function (err, result, fields) {
                 if (err) throw err;
@@ -101,33 +84,39 @@ function getMessage() {
         }
     });
 }
-function err(e) {
 
-}
-function urlToIp(url) {
-    try {
-        var IP = getIndexOfK(dns, url);
-        return dns[IP[0]][1];
-    }catch (e) {
-        return false;
-    }
-}
 const subsock = new zmq.socket("sub");
 subsock.connect(BROKER_URL_SUB);
 subsock.subscribe(TOPIC);
-//pushMessage("DNS?>google.com");
-//pushMessage("DNS?>iwg-it.com");
 console.log("Server started");
 getMessage();
 
-function handleDisconnect() {
+app.get('/', function(request, response){
+    response.sendFile(__dirname + '/html/index.html');
+});
 
-}
-function getIndexOfK(arr, k) {
-    for (var i = 0; i < arr.length; i++) {
-        var index = arr[i].indexOf(k);
-        if (index > -1) {
-            return [i, index];
-        }
+app.get('/api', function(request, response){
+    if ('url' in request.query){
+        con.query("REPLACE INTO DNS (url, ip) VALUES("+mysql.escape(String(request.query.url))+", "+mysql.escape(String(request.query.ip))+")",function (err, result, fields) {
+            if (err) throw err;
+            if (result.rowsAffected = 1) {
+                response.send("record saved");
+            } else {
+                response.send("something went wrong");
+            }
+        });
+    } else {
+        con.query("SELECT * FROM DNS", function (err, result, fields) {
+            if (err) throw err;
+            //console.log(result);
+            try {
+                result = JSON.stringify(result);
+                //console.log(result);
+                response.send(result);
+            } catch (e) { //if there is no ip for a provided url
+                console.log("something went wrong");
+            }
+        });
     }
-}
+});
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
