@@ -12,7 +12,7 @@ npm install
 npm start
 ```
 You can access the webpage with localhost:3000 </br>
-Here you can see a list of all the URL's and IP's and add a new dns record
+Here you can see a list of all the URL's and IP's and add a new dns record, delete a old one or search for for adns record
 ### Client
 ```sh
 npm run client
