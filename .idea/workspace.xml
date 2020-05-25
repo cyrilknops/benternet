@@ -2,13 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f92fc35-16ec-4fda-86a6-622fcd391c5f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/eslint-config-prettier-check" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/eslint-config-prettier-check" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/@typescript-eslint.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/@typescript-eslint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/babel.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/babel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/bin/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/bin/cli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/bin/validators.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/bin/validators.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/flowtype.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/flowtype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/react.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/react.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/standard.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/standard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/unicorn.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/unicorn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-config-prettier/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-config-prettier/vue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-plugin-prettier/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-plugin-prettier/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/eslint-plugin-prettier/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/eslint-plugin-prettier/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,23 +84,27 @@
         <counts>
           <entry key="html" value="859" />
           <entry key="js" value="502" />
+          <entry key="json" value="13" />
           <entry key="md" value="651" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="859" />
+          <entry key="JSON" value="13" />
           <entry key="JavaScript" value="502" />
           <entry key="Markdown" value="651" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="json" value="1" />
           <entry key="md" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="JSON" value="1" />
           <entry key="Markdown" value="1" />
         </counts>
       </usages-collector>
@@ -96,11 +112,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+            <state relative-caret-position="465">
+              <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package-lock.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="410" column="22" selection-start-line="410" selection-start-column="22" selection-end-line="410" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -135,7 +160,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -162,6 +187,7 @@
       <find>185.194</find>
       <find>ip</find>
       <find>localhost</find>
+      <find>cryp</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -173,7 +199,6 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/src/pub.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/html/index.html" />
         <option value="$PROJECT_DIR$/src/website.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
@@ -181,6 +206,7 @@
         <option value="$PROJECT_DIR$/src/server.js" />
         <option value="$PROJECT_DIR$/src/html/index.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -299,7 +325,7 @@
       <updated>1588074480411</updated>
       <workItem from="1588074481537" duration="7947000" />
       <workItem from="1588659327609" duration="21644000" />
-      <workItem from="1590421346010" duration="7230000" />
+      <workItem from="1590421346010" duration="7481000" />
     </task>
     <task id="LOCAL-00001" summary="added a client">
       <created>1588680221899</created>
@@ -312,7 +338,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36821000" />
+    <option name="totallyTimeSpent" value="37072000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -327,13 +353,13 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989796" visible="true" weight="0.25579977" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989796" visible="true" weight="0.25579977" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.50102043" side_tool="true" visible="true" weight="0.24969475" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4981685" visible="true" weight="0.30408162" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4981685" weight="0.30408162" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -342,7 +368,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.502442" side_tool="true" weight="0.32857144" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.497558" weight="0.32857144" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.497558" visible="true" weight="0.32857144" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4993895" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -368,9 +394,6 @@
     <entry file="file://$PROJECT_DIR$/images/success.png" />
     <entry file="file://$PROJECT_DIR$/index.js" />
     <entry file="file://$PROJECT_DIR$/src/pub.js" />
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/middleware/init.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
@@ -387,13 +410,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/website.js" />
     <entry file="file://$PROJECT_DIR$/src/index.js" />
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="415">
@@ -425,6 +441,20 @@
             <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="410" column="22" selection-start-line="410" selection-start-column="22" selection-end-line="410" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
         </state>
       </provider>
     </entry>
