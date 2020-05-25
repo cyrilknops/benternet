@@ -1,0 +1,33 @@
+{
+  "name": "network-programming",
+  "version": "1.0.0",
+  "description": "A network project using ZeroMQ ",
+  "main": "srcindex.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "client": "node src/client.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.7.9",
+    "bootstrap": "^4.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "jquery": "^3.5.1",
+    "mysql": "^2.18.1",
+    "popper.js": "^1.16.1",
+    "prettier": "^1.19.1",
+    "prompt": "^1.0.0",
+    "zeromq": "^6.0.0-beta.6"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
