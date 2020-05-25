@@ -8,8 +8,16 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-const BROKER_URL_PUSH = "tcp://benternet.pxl-ea-ict.be:24041"; //the url that the server pushes to
-const BROKER_URL_SUB = "tcp://benternet.pxl-ea-ict.be:24042";  //the url that the server subs to
+const remote = true; //set false for local
+var BROKER_URL_PUSH = "";
+var BROKER_URL_SUB = "";
+if(remote){
+    BROKER_URL_PUSH = "tcp://benternet.pxl-ea-ict.be:24041"; //the url that the server pushes to
+    BROKER_URL_SUB = "tcp://benternet.pxl-ea-ict.be:24042";  //the url that the server subs to
+}else{
+    BROKER_URL_PUSH = "tcp://192.168.1.15:24041"; //the url that the server pushes to
+    BROKER_URL_SUB = "tcp://192.168.1.15:24042";  //the url that the server subs to
+}
 const TOPIC = "DNS";    //the topic that the server listens to
 
 function pushMessage(msg) { //push a message to the broker
