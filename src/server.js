@@ -3,14 +3,16 @@ require('dotenv').config();
 const zmq = require('zeromq');
 const mysql = require('mysql');
 const express = require('express');
-var cors = require('cors')
+var cors = require('cors');
+const dns = require('dns');
+
 var con = mysql.createPool({    //needs to be createPool, createConnection wil try to stay connected and fail
     host: "185.28.20.4",
     user: "u398363217_benternet",
     password: "Bkd!hFd9",
     database: "u398363217_benternet"
 });
-const app = new express();
+const app = express();
 const port = 3000;
 app.set('trust proxy', true);
 app.use(cors());
@@ -55,22 +57,42 @@ function getMessage() { //get called every time there is a message
             msg = String(topic).split(">")[1];
             var IP = false;
                 con.query("SELECT * FROM DNS WHERE url LIKE " + mysql.escape(String(msg)), function (err, result, fields) {
-                    if (err) throw err;
-                    //console.log(result);
-                    try {
-                        IP = result[0].ip;
-                    }catch (e) { //if there is no ip for a provided url
-                        IP = false;
-                    }
-                    if (!IP) { //checks it there is a ip
-                        //console.log("DNS!>I don't know the ip of", String(msg)); //for debug
-                        pushMessage(TOPIC+"!>" + String(msg)+":unknown");
+                if (err) throw err;
+                //console.log(result);
+                try {
+                    IP = result[0].ip;
+                }catch (e) { //if there is no ip for a provided url
+                    IP = false;
+                }
+                if (!IP) { //checks it there is a ip
+                    //console.log("DNS!>I don't know the ip of", String(msg)); //for debug
+                    dns.lookup(String(msg), (err, address, family) => {
+                        pushMessage(TOPIC+"!>" + String(msg)+":"+String(address));
+                        con.query("REPLACE INTO DNS (url, ip) VALUES("+mysql.escape(String(msg))+", "+mysql.escape(String(address))+")",function (err, result, fields) {
+                            if (err) throw err;
+                            //console.log(result);
+                            try {
+                                IP = result[0].ip;
+                            }catch (e) {
+                                IP=false
+                            }
+                            console.log(result.rowsAffected);
+                            if (result.rowsAffected = 1) {
+                                //console.log("DNS!>I don't know the ip of", String(msg));
+                                //pushMessage(TOPIC+"ADD!>" + String(url)+":Updated");
+                            } else {
+                                //console.log("DNS!>The IP of:", String(msg), "is:", String(IP));
+                                //pushMessage(TOPIC+"ADD!>" + String(url) +":Added");
+                            }
+                        });
+                    });
+                    //pushMessage(TOPIC+"!>" + String(msg)+":"+String(addrress));
 
-                    } else {
-                        //console.log("DNS!>The IP of:", String(msg), "is:", String(IP)); //for debug
-                        pushMessage(TOPIC+"!>" + String(msg) +":"+ String(IP));
-                    }
-                });
+                } else {
+                    //console.log("DNS!>The IP of:", String(msg), "is:", String(IP)); //for debug
+                    pushMessage(TOPIC+"!>" + String(msg) +":"+ String(IP));
+                }
+            });
         }else if(String(topic).includes(TOPIC+'ADD?>')) { //if the user want's to update or add a ip to a url
             url = String(topic).split(">")[1];
             ip = String(topic).split(">")[2];
@@ -83,13 +105,22 @@ function getMessage() { //get called every time there is a message
                 }catch (e) {
                     IP=false
                 }
-                //console.log(IP);
+                console.log(result.rowsAffected);
                 if (result.rowsAffected = 1) {
                     //console.log("DNS!>I don't know the ip of", String(msg));
                     pushMessage(TOPIC+"ADD!>" + String(url)+":Updated");
                 } else {
                     //console.log("DNS!>The IP of:", String(msg), "is:", String(IP));
                     pushMessage(TOPIC+"ADD!>" + String(url) +":Added");
+                }
+            });
+        }else if(String(topic).includes(TOPIC+'DELETE?>')) {
+            console.log(String(topic));
+            url = String(topic).split(">")[1];
+            con.query("DELETE FROM DNS WHERE url LIKE " + mysql.escape(String(url)), function (err, result, fields) {
+                if (err) throw err;
+                if (result.rowsAffected = 1) {
+                    pushMessage(TOPIC+"DELETE!>" + String(url)+":Deleted");
                 }
             });
         }
@@ -108,7 +139,10 @@ app.get('/', function(request, response){
 
 app.get('/api', function(request, response){
     var ip = "";
-    if ('url' in request.query){
+    if (request.query.r == 'delete'){
+        pushMessage(TOPIC+"DELETE?>"+request.query.url);
+        response.send("record deleted");
+    } else if (request.query.r == 'add'){
         if('ip' in request.query){
             ip = request.query.ip;
         }else{
@@ -119,6 +153,19 @@ app.get('/api', function(request, response){
         }
         pushMessage(TOPIC+"ADD?>"+request.query.url+">"+ip);
         response.send("record added or updated");
+    }else if (request.query.r == 'ask'){
+        pushMessage(TOPIC+"?>"+request.query.url);
+        con.query("SELECT * FROM DNS WHERE url LIKE " + mysql.escape(String(request.query.url)), function (err, result, fields) {
+            if (err) throw err;
+            //console.log(result);
+            try {
+                result = JSON.stringify(result[0]);
+                //console.log(result);
+                response.send(result);
+            } catch (e) { //if there is no ip for a provided url
+                console.log("something went wrong");
+            }
+        });
     } else {
         con.query("SELECT * FROM DNS", function (err, result, fields) {
             if (err) throw err;

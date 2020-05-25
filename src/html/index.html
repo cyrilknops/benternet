@@ -20,17 +20,24 @@
 <body ng-app="myApp">
 <div class="container" ng-controller="bikeController as vm">
     <h1>DNS records</h1>
+    <form novalidate class="simple-form">
+        <label>URL: <input type="text" ng-model="vm.url" /><input type="submit" ng-click="vm.ask()" value="Search" /></label><br />
+        <label>IP: <input type="text" ng-model="vm.ip" /></label><br />
+        <input type="submit" ng-click="vm.add()" value="Add" />
+
+    </form>
     <div class="row">
         <div class="col-md-12" style="text-align: right">
             <table class= "table table-striped">
-
                 <tr>
                     <td><h4>URL</h4></td>
                     <td><h4>IP</h4></td>
+                    <td><h4>DELETE</h4></td>
                 </tr>
                 <tr ng-repeat="dns in vm.dnss">
                     <td>{{dns.url}}</td>
                     <td>{{dns.ip}}</td>
+                    <td><button ng-click="vm.delete(dns.url)">Delete</button></td>
                 </tr>
             </table>
         </div>
@@ -52,7 +59,7 @@
         vm.getData = function(){
             $http({
                 method: 'get',
-                url   : "http://localhost:3000/api"
+                url   : "http://84.193.168.7:3000/api"
             }).then(function (dns) {
                 vm.dnss = dns.data;
             }).catch(function (err) {
@@ -61,7 +68,7 @@
             });
 
             if(error){
-                alert('Error: er is een fout opgetreden ');
+                console.log('Error: er is een fout opgetreden ');
             }
         }
 
@@ -69,8 +76,51 @@
             $timeout(function() {
                 vm.getData();
                 vm.intervalFunction();
-            }, 10000)
+            }, 5000)
         };
+        vm.add = function(){
+            var request = "";
+            console.log(vm.ip);
+            if(vm.ip == ""){
+                request = "r=add&url="+vm.url;
+            }else{
+                request = "r=add&url="+vm.url+"&ip="+String(vm.ip);
+            }
+            $http({
+                method: 'get',
+                url   : "http://84.193.168.7:3000/api?"+request
+            }).then(function (dns) {
+                //alert("Added to database");
+                vm.getData();
+            }).catch(function (err) {
+                error = true;
+            });
+        }
+        vm.delete = function(url){
+            var request = "";
+            request = "r=delete&url="+url;
+            $http({
+                method: 'get',
+                url   : "http://84.193.168.7:3000/api?"+request
+            }).then(function (dns) {
+                //alert("Deleted from database");
+                vm.getData();
+            }).catch(function (err) {
+                error = true;
+            });
+        }
+        vm.ask = function(){
+            request = "r=ask&url="+vm.url;
+            $http({
+                method: 'get',
+                url   : "http://84.193.168.7:3000/api?"+request
+            }).then(function (dns) {
+                vm.ip = dns.data.ip;
+                vm.getData();
+            }).catch(function (err) {
+                error = true;
+            });
+        }
         vm.getData();
         vm.intervalFunction();
     }

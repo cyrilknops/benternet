@@ -43,11 +43,12 @@ function getMessage() { //get called every time there is a message
             msg = String(topic).split(">")[1];
             console.log(String(msg));
 
-        }else{
-            if (String(topic).includes('DNSADD!>')) {
-                msg = String(topic).split(">")[1];
-                console.log(String(msg));
-            }
+        }else if (String(topic).includes('DNSADD!>')) {
+            msg = String(topic).split(">")[1];
+            console.log(String(msg));
+        }else if (String(topic).includes('DNSDELETE!>')) {
+            msg = String(topic).split(">")[1];
+            console.log(String(msg));
         }
     });
 }
@@ -56,8 +57,13 @@ function getCommand() {
         if(url == 'help'){
             console.log("To find a ip just type the url, example facebook.com");
             console.log("To add a ip just type the url:ip, example facebook.com:6.6.6.6");
+            console.log("To delete a ip just type the delete:url, example delete:facebook.com");
             getCommand();
-        }else if(String(url).includes(':')){
+        }else if(String(url).includes('delete')){
+            msg = String(url).split(":");
+            pushMessage(TOPIC+"DELETE?>"+msg[1]);
+        }
+        else if(String(url).includes(':')){
             msg = String(url).split(":");
             pushMessage(TOPIC+"ADD?>"+msg[0]+">"+msg[1]);
         }else{
