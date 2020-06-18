@@ -1,7 +1,8 @@
 # DNS
 A DNS service for the benternet network made for nodejs
 ## Requirements
-You need to install nodejs on a MAC OS computer. Windows is not working at the moment
+* nodejs
+* tested on mac os, windows 10 and ubuntu
 ## Installation
 ```sh
 npm install
