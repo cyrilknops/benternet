@@ -34,7 +34,7 @@
                     <td><h4>IP</h4></td>
                     <td><h4>DELETE</h4></td>
                 </tr>
-                <tr ng-repeat="dns in vm.dnss">
+                <tr ng-repeat="dns in vm.dnss | orderBy : 'url'">
                     <td>{{dns.url}}</td>
                     <td>{{dns.ip}}</td>
                     <td><button ng-click="vm.delete(dns.ip)">Delete</button></td>

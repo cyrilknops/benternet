@@ -205,27 +205,43 @@ app.get('/api', async function(request, response){
         pushMessage(TOPIC+"?>"+request.query.url);
         con.query("SELECT DNS.url, IPS.ip FROM DNS, IPS WHERE DNS.id = IPS.DNSid AND DNS.url LIKE " + mysql.escape(String(request.query.url))+" ORDER BY lastUsed ASC LIMIT 1", function (err, result, fields) {
             if (err) throw err;
-            con.query("UPDATE IPS SET lastUsed = CURRENT_TIMESTAMP WHERE ip LIKE "+mysql.escape(String(result[0].ip)), function (err, results) {
-                if(err) throw err;
-            });
-            //console.log(result);
-            try {
-                result = JSON.stringify(result[0]);
+            if(result.length >= 1) {
+                con.query("UPDATE IPS SET lastUsed = CURRENT_TIMESTAMP WHERE ip LIKE " + mysql.escape(String(result[0].ip)), function (err, results) {
+                    if (err) throw err;
+                });
                 //console.log(result);
-                response.send(result);
-            } catch (e) { //if there is no ip for a provided url
-                console.log("something went wrong");
+                try {
+                    result = JSON.stringify(result[0]);
+                    //console.log(result);
+                    response.send(result);
+                } catch (e) { //if there is no ip for a provided url
+                    console.log("something went wrong");
+                }
+            }else{
+                pushMessage(TOPIC+"?>"+request.query.url);
             }
         });
     }else if(request.query.r == 'whois'){
         let url = request.query.url;
         let results = await whois(url);
+        console.log(results);
         //console.log(JSON.stringify(results, null, 2));
         let country = results.registrantCountry;
+        let techCountry = results.techCountry;
         let isp = results.registrationServiceProvidedBy;
+        let ip = "";
+        if(country == undefined && techCountry == undefined){
+            country = "Unknown Country";
+        } else if(country == undefined){
+            country = techCountry;
+        }
+        if(isp == undefined){
+            isp = "Unknown ISP"
+        }
+        ip = country+":"+isp;
         let res = {
                 url:url,
-                ip:country+":"+isp
+                ip:ip
             };
         response.send(JSON.stringify(res));
     }
