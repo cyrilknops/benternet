@@ -49,6 +49,11 @@ function getMessage() { //get called every time there is a message
         }else if (String(topic).includes('DNSDELETE!>')) {
             msg = String(topic).split(">")[1];
             console.log(String(msg));
+        }else if (String(topic).includes('DNSLB!>')) {
+            console.log(String(topic));
+        }
+        else if (String(topic).includes('DNSWHOIS!>')) {
+            console.log(String(topic));
         }
     });
 }
@@ -60,11 +65,16 @@ function getCommand() {
             console.log("To delete a ip just type the delete:url, example delete:facebook.com");
             getCommand();
         }else if(String(url).includes('delete')){
-            msg = String(url).split(":");
+            let msg = String(url).split(":");
             pushMessage(TOPIC+"DELETE?>"+msg[1]);
-        }
-        else if(String(url).includes(':')){
-            msg = String(url).split(":");
+        }else if(String(url).includes('lb')){
+            let msg = String(url).split(":");
+            pushMessage(TOPIC+"LB?>"+msg[1]);
+        }else if(String(url).includes('whois')){
+            let msg = String(url).split(":");
+            pushMessage(TOPIC+"WHOIS?>"+msg[1]);
+        }else if(String(url).includes(':')){
+            let msg = String(url).split(":");
             pushMessage(TOPIC+"ADD?>"+msg[0]+">"+msg[1]);
         }else{
             pushMessage(TOPIC+"?>"+url);
