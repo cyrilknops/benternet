@@ -72,25 +72,42 @@ function getMessage() { //get called every time there is a message
                     //console.log("DNS!>I don't know the ip of", String(msg)); //for debug
                     dns.lookup(String(msg), (err, address, family) => {
                         pushMessage(TOPIC+"!>" + String(msg)+":"+String(address));
-                        con.query("INSERT INTO DNS (url)VALUES("+mysql.escape(msg)+")",(err, result)=>{
-                            if (err) throw err;
-                            con.query("INSERT INTO IPS (DNSid, ip) VALUES("+mysql.escape(result.insertId)+","+mysql.escape(String(address))+")",function (err, result, fields) {
-                                if (err) throw err;
-                                //console.log(result);
-                                try {
-                                    IP = result[0].ip;
-                                }catch (e) {
-                                    IP=false
-                                }
-                                console.log(result.rowsAffected);
-                                if (result.rowsAffected = 1) {
+                        con.query("SELECT * FROM DNS WHERE url LIKE" +mysql.escape(msg),(err, result) =>{
+                            if(result.length <= 0) {
+                                con.query("INSERT INTO DNS (url)VALUES(" + mysql.escape(msg) + ")", (err, result) => {
+                                    if (err) throw err;
+                                    con.query("INSERT INTO IPS (DNSid, ip) VALUES(" + mysql.escape(result.insertId) + "," + mysql.escape(String(address)) + ")", function (err, result, fields) {
+                                        if (err) throw err;
+                                        //console.log(result);
+                                        try {
+                                            IP = result[0].ip;
+                                        } catch (e) {
+                                            IP = false
+                                        }
+                                        console.log(result.rowsAffected);
+                                        if (result.rowsAffected = 1) {
+                                            //console.log("DNS!>I don't know the ip of", String(msg));
+                                            //pushMessage(TOPIC+"ADD!>" + String(url)+":Updated");
+                                        } else {
+                                            //console.log("DNS!>The IP of:", String(msg), "is:", String(IP));
+                                            //pushMessage(TOPIC+"ADD!>" + String(url) +":Added");
+                                        }
+                                    });
+                                });
+                            }else{
+                                con.query("INSERT INTO IPS (DNSid, ip) VALUES("+mysql.escape(result[0].id)+","+mysql.escape(String(address))+")",function (err, result, fields) {
+                                    if (err) throw err;
+                                    //console.log(result);
+                                    try {
+                                        IP = result[0].ip;
+                                    }catch (e) {
+                                        IP=false
+                                    }
+                                    console.log(result.rowsAffected);
                                     //console.log("DNS!>I don't know the ip of", String(msg));
-                                    //pushMessage(TOPIC+"ADD!>" + String(url)+":Updated");
-                                } else {
-                                    //console.log("DNS!>The IP of:", String(msg), "is:", String(IP));
-                                    //pushMessage(TOPIC+"ADD!>" + String(url) +":Added");
-                                }
-                            });
+                                    //pushMessage(TOPIC+"ADD!>" + String(url)+":Added");
+                                });
+                            }
                         });
                     });
                     //pushMessage(TOPIC+"!>" + String(msg)+":"+String(addrress));
@@ -172,8 +189,19 @@ getWhois = async function(url){
     var results = await whois(url);
     //console.log(JSON.stringify(results, null, 2));
     let country = results.registrantCountry;
+    let techCountry = results.techCountry;
     let isp = results.registrationServiceProvidedBy;
-    pushMessage(TOPIC+"WHOIS!>" + String(url)+">"+country+">"+isp);
+    let ip = "";
+    if(country == undefined && techCountry == undefined){
+        country = "Unknown Country";
+    } else if(country == undefined){
+        country = techCountry;
+    }
+    if(isp == undefined){
+        isp = "Unknown ISP"
+    }
+    ip = country+">"+isp;
+    pushMessage(TOPIC+"WHOIS!>" + String(url)+">"+ip);
 };
 const subsock = new zmq.socket("sub");
 subsock.connect(BROKER_URL_SUB);

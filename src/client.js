@@ -63,6 +63,8 @@ function getCommand() {
             console.log("To find a ip just type the url, example facebook.com");
             console.log("To add a ip just type the url:ip, example facebook.com:6.6.6.6");
             console.log("To delete a ip just type the delete:url, example delete:facebook.com");
+            console.log("To get the WHOIS data just type the whois:url, example whois:facebook.com");
+            console.log("To get a list of ip's from a url just type the lb:url, example lb:facebook.com");
             getCommand();
         }else if(String(url).includes('delete')){
             let msg = String(url).split(":");
