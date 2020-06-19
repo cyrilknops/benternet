@@ -21,7 +21,7 @@
 <div class="container" ng-controller="bikeController as vm">
     <h1>DNS records</h1>
     <form novalidate class="simple-form">
-        <label>URL: <input type="text" ng-model="vm.url" /><input type="submit" ng-click="vm.ask()" value="Search" /><input type="submit" ng-click="vm.whois()" value="Whois" /></label><br />
+        <label>URL: <input type="text" ng-model="vm.url" /><input type="submit" ng-click="vm.ask()" value="Search" /><input type="submit" ng-click="vm.asklist()" value="List all" /><input type="submit" ng-click="vm.whois()" value="Whois" /></label><br />
         <label>IP: <input type="text" ng-model="vm.ip" /></label><br />
         <input type="submit" ng-click="vm.add()" value="Add" />
 
@@ -113,6 +113,18 @@
         };
         vm.ask = function(){
             request = "r=ask&url="+vm.url;
+            $http({
+                method: 'get',
+                url   : vm.api+"api?"+request
+            }).then(function (dns) {
+                vm.ip = dns.data.ip;
+                vm.getData();
+            }).catch(function (err) {
+                error = true;
+            });
+        };
+        vm.asklist = function(){
+            request = "r=asklist&url="+vm.url;
             $http({
                 method: 'get',
                 url   : vm.api+"api?"+request
