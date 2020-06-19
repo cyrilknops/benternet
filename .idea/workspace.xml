@@ -2,63 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f92fc35-16ec-4fda-86a6-622fcd391c5f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/History.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/History.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/appveyor.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/appveyor.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/binding.cc" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/binding.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/binding.gyp" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/binding.gyp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/build/Release/zmq.node" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/build/Release/zmq.node" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/codecov.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/codecov.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/examples/producer.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/examples/producer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/examples/pubber.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/examples/pubber.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/examples/smoketest.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/examples/smoketest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/examples/subber.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/examples/subber.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/examples/worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/examples/worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/lib/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/scripts/build_libzmq.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/scripts/build_libzmq.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/scripts/cross_compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/scripts/cross_compile.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/scripts/download.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/scripts/download.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/scripts/prebuild-install.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/scripts/prebuild-install.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/scripts/preinstall.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/scripts/preinstall.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/scripts/publish_docs.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/scripts/publish_docs.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/context.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/context.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/exports.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/exports.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/gc.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/gc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.error-callback.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.error-callback.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.events.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.events.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.monitor.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.monitor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.pair.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.pair.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.pub-sub.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.pub-sub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.push-pull.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.push-pull.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.req-rep.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.req-rep.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.stream.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.unbind.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.unbind.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.xpub-xsub.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.xpub-xsub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/socket.zap.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/socket.zap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/zap.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/zap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.push-pull.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.push-pull.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.router-dealer.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.router-dealer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.xpub-xsub.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.xpub-xsub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.xrep-xreq.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/test/zmq_proxy.xrep-xreq.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/windows/include/zmq.h" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/windows/include/zmq.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/zeromq/windows/include/zmq_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/zeromq/windows/include/zmq_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -161,12 +105,24 @@
         <counts>
           <entry key="html" value="100" />
           <entry key="js" value="1669" />
+          <entry key="json" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="100" />
+          <entry key="JSON" value="3" />
           <entry key="JavaScript" value="1669" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="json" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JSON" value="2" />
         </counts>
       </usages-collector>
     </session>
@@ -174,10 +130,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="898">
               <caret line="228" column="14" selection-start-line="228" selection-start-column="14" selection-end-line="228" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package-lock.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1084">
+              <caret line="453" column="22" selection-start-line="453" selection-start-column="22" selection-end-line="453" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -246,10 +220,10 @@
         <option value="$PROJECT_DIR$/src/website.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/client.js" />
         <option value="$PROJECT_DIR$/src/html/index.html" />
         <option value="$PROJECT_DIR$/src/server.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -371,7 +345,7 @@
       <workItem from="1590421346010" duration="7481000" />
       <workItem from="1592473849536" duration="738000" />
       <workItem from="1592517123647" duration="758000" />
-      <workItem from="1592550081637" duration="8674000" />
+      <workItem from="1592550081637" duration="8949000" />
     </task>
     <task id="LOCAL-00001" summary="added a client">
       <created>1588680221899</created>
@@ -384,7 +358,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47242000" />
+    <option name="totallyTimeSpent" value="47517000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -397,7 +371,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="763" y="0" width="1803" height="1416" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989796" visible="true" weight="0.15375789" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -405,7 +378,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4981685" visible="true" weight="0.13172252" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4981685" weight="0.13172252" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -414,7 +387,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.502442" side_tool="true" weight="0.32857144" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.497558" weight="0.10911925" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.497558" visible="true" weight="0.10911925" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4993895" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -459,13 +432,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/website.js" />
     <entry file="file://$PROJECT_DIR$/src/index.js" />
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -473,13 +439,6 @@
             <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1788">
-          <caret line="453" column="22" selection-start-line="453" selection-start-column="22" selection-end-line="453" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -504,6 +463,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="898">
           <caret line="228" column="14" selection-start-line="228" selection-start-column="14" selection-end-line="228" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1084">
+          <caret line="453" column="22" selection-start-line="453" selection-start-column="22" selection-end-line="453" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
         </state>
       </provider>
     </entry>
