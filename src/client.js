@@ -49,6 +49,11 @@ function getMessage() { //get called every time there is a message
         }else if (String(topic).includes('DNSDELETE!>')) {
             msg = String(topic).split(">")[1];
             console.log(String(msg));
+        }else if (String(topic).includes('DNSLB!>')) {
+            console.log(String(topic));
+        }
+        else if (String(topic).includes('DNSWHOIS!>')) {
+            console.log(String(topic));
         }
     });
 }
@@ -57,14 +62,21 @@ function getCommand() {
         if(url == 'help'){
             console.log("To find a ip just type the url, example facebook.com");
             console.log("To add a ip just type the url:ip, example facebook.com:6.6.6.6");
-            console.log("To delete a ip just type the delete:url, example delete:facebook.com");
+            console.log("To delete a ip just type the delete:ip, example delete:6.6.6.6");
+            console.log("To get the WHOIS data just type the whois:url, example whois:facebook.com");
+            console.log("To get a list of ip's from a url just type the lb:url, example lb:facebook.com");
             getCommand();
         }else if(String(url).includes('delete')){
-            msg = String(url).split(":");
+            let msg = String(url).split(":");
             pushMessage(TOPIC+"DELETE?>"+msg[1]);
-        }
-        else if(String(url).includes(':')){
-            msg = String(url).split(":");
+        }else if(String(url).includes('lb')){
+            let msg = String(url).split(":");
+            pushMessage(TOPIC+"LB?>"+msg[1]);
+        }else if(String(url).includes('whois')){
+            let msg = String(url).split(":");
+            pushMessage(TOPIC+"WHOIS?>"+msg[1]);
+        }else if(String(url).includes(':')){
+            let msg = String(url).split(":");
             pushMessage(TOPIC+"ADD?>"+msg[0]+">"+msg[1]);
         }else{
             pushMessage(TOPIC+"?>"+url);
