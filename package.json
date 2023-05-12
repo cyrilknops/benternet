@@ -29,7 +29,7 @@
     "prettier": "^1.19.1",
     "prompt": "^1.0.0",
     "request": "^2.68.0",
-    "whois": "^2.12.1",
+    "whois": "^2.14.0",
     "whois-json": "^2.0.4",
     "zeromq": "^5.2.0"
   },
